@@ -16,7 +16,7 @@ const promise = axios
 
     let moviesTable = '<table style="width:100%; text-align: center;">';
     //add to variable
-    try{
+    
     for (var i = 0; i < 9; i = i+ 3) {
       moviesTable +=
         "<tr>" +
@@ -51,9 +51,9 @@ const promise = axios
         data.Search[i + 2].Year +
         "</h3></td>" +
         "</tr>";
-    }
-    }catch(err){
-        console.log("Error: " + err);
+    
+    
+       
     
 
     }
