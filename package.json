@@ -1,5 +1,5 @@
 {
-  "name": "ws3",
+  "name": "api-na",
   "version": "0.1.0",
   "description": "A sample Node.js app in Heroku",
   "engines": {
@@ -11,6 +11,17 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "pkg": "^4.4.9",
     "request": "^2.88.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teemunasanen/api-na.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teemunasanen/api-na/issues"
+  },
+  "homepage": "https://github.com/teemunasanen/api-na#readme"
 }
