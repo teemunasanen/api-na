@@ -1,15 +1,16 @@
 {
-  "name": "api-na",
-  "version": "1.0.0",
+  "name": "ws3",
+  "version": "0.1.0",
   "description": "A sample Node.js app in Heroku",
   "engines": {
-    "node": "14.x"
+    "node": "12.x"
   },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "request": "^2.88.2"
+  }
 }
