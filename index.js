@@ -4,7 +4,7 @@
 
 const http = require("http");
 const axios = require("axios");
-const PORT = "https://api-na.herokuapp.com/" || 5000;
+const PORT = process.env.PORT || 5000;
 
 let search = "superman";
 let moviesTable = "perkele";
