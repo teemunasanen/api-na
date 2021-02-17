@@ -6,7 +6,7 @@ const http = require("http");
 const axios = require("axios");
 const PORT = "https://api-na.herokuapp.com/" || 5000;
 
-let search = "loser";
+let search = "superman";
 let moviesTable = "perkele";
 //Get data
 const promise = axios
