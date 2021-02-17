@@ -1,30 +1,73 @@
-const request = require("request");
-const PORT = process.env.PORT || 5000;
-var http = require("http");
-var data;
+// Node.js Workshop 3: Processing JSON and using API’s
+// Not pretty, but works
+// I wanted to build it with search and get, but didn't have enough time
 
-request("http://www.omdbapi.com/?t=harry+potter&apikey=3d3574c1", 
-{json: true}, 
-(err, res, body) => {
-    if (err) {
-        return console.log(err); 
+const http = require("http");
+const axios = require("axios");
+const PORT = process.env.PORT || 8081;
+
+let search = "loser";
+let moviesTable = "perkele";
+//Get data
+const promise = axios
+  .get("http://www.omdbapi.com/?s=" + search + "&apikey=66d73af4")
+  .then((response) => {
+    const data = response.data;
+
+    let moviesTable = '<table style="width:100%; text-align: center;">';
+    //add to variable
+    try{
+    for (var i = 0; i < 9; i = i+ 3) {
+      moviesTable +=
+        "<tr>" +
+        "<td><img src=" +
+        data.Search[i].Poster +
+        "</img> </td>" +
+        "<td><img src=" +
+        data.Search[i + 1].Poster +
+        "</img> </td>" +
+        "<td><img src=" +
+        data.Search[i + 2].Poster +
+        "</img> </td>" +
+        "</tr>" + "<tr>" +
+        "<td><h3>" +
+        data.Search[i].Title +
+        "</h3></td>" +
+        "<td><h3>" +
+        data.Search[i + 1].Title +
+        "</h3></td>" +
+        "<td><h3>" +
+        data.Search[i + 2].Title +
+        "</h3></td>" +"</tr>"+
+
+        "<tr>" +
+        "<td><h3>Year: " +
+        data.Search[i].Year +
+        "</h3></td>" +
+        "<td><h3>Year: " +
+        data.Search[i + 1].Year +
+        "</h3></td>" +
+        "<td><h3>Year: " +
+        data.Search[i + 2].Year +
+        "</h3></td>" +
+        "</tr>";
     }
-    data = body;
-    console.log(res);
-    console.log(body);
-});
+    }catch(err){
+        console.log("Error: " + err);
+    
 
-http.createServer(function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/html" });
+    }
+    moviesTable += "</table>";
+    
 
-    response.write("<table border='1'>");
-    response.write("<tr><td>Name: " + data.Title + "</td></tr>");
-    response.write("<tr><td>Year: " + data.Year + "</td></tr>");
-    response.write("<tr><td>Genre: " + data.Genre + "</td></tr>");
-    response.write("<tr><td>Plot: " + data.Plot + "</td></tr>");
-    response.write("<tr><td>Rating: (" + data.Ratings[0].Source + ") " + data.Ratings[0].Value + "</td></tr>");
-    response.write("</table>");
+    // Create server
+    const app = http.createServer(function (req, res) {
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.write("<h1>Movies</h1>");
+      res.write(moviesTable);
 
-    response.end();
-  })
-  .listen(PORT);
+      res.end();
+    });
+
+    app.listen(PORT);
+  });
