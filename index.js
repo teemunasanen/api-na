@@ -1,7 +1,7 @@
 // Node.js Workshop 3: Processing JSON and using API’s
 // Not pretty, but works
 // I wanted to build it with search and get, but didn't have enough time
-import axios from 'axios';
+
 const http = require("http");
 const axios = require("axios");
 const PORT = "https://api-na.herokuapp.com/" || 5000;
